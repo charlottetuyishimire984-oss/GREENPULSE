@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="rw">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123c2d">
+  <title>GREENPULSE | Smart Farming</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#123c2d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+
+<!-- LOGIN PAGE: displayed before the dashboard -->
+<section class="login-screen" id="loginScreen">
+  <div class="login-container">
+    <div class="login-welcome">
+      <a class="login-brand" href="#" aria-label="GREENPULSE">
+        <span class="login-logo"><i class="fa-solid fa-seedling"></i></span>
+        <span>GREENPULSE</span>
+      </a>
+      <div class="welcome-content">
+        <span class="welcome-label">SMART AGRICULTURE SYSTEM</span>
+        <h2>Grow Smarter.<br>Farm Better.</h2>
+        <p>Monitor your farm, manage irrigation and make better farming decisions with GREENPULSE.</p>
+      </div>
+      <div class="login-footer"><i class="fa-solid fa-seedling"></i> Smart Technology for Better Agriculture</div>
+    </div>
+
+    <div class="login-form-side">
+      <div class="login-form-header">
+        <span class="login-small-title">WELCOME BACK</span>
+        <h2>Sign In</h2>
+        <p>Enter your account details to access your dashboard.</p>
+      </div>
+
+      <form id="loginForm">
+        <div class="login-input-group">
+          <label for="loginEmail">Email Address</label>
+          <div class="login-input-wrapper">
+            <i class="fa-regular fa-envelope"></i>
+            <input type="email" id="loginEmail" placeholder="Enter your email" autocomplete="username" required>
+          </div>
+        </div>
+
+        <div class="login-input-group">
+          <label for="loginPassword">Password</label>
+          <div class="login-input-wrapper">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password" required>
+            <button type="button" class="password-toggle" id="toggleLoginPassword" aria-label="Show password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="login-options">
+          <label class="remember-option"><input type="checkbox" id="rememberMe"><span>Remember me</span></label>
+          <button type="button" class="login-link" id="forgotPasswordLink">Forgot Password?</button>
+        </div>
+
+        <p class="login-error" id="loginError" role="alert"></p>
+        <button type="submit" class="login-submit">Sign In <i class="fa-solid fa-arrow-right"></i></button>
+      </form>
+
+      <div class="login-register">Don't have an account? <button type="button" id="createAccountLink">Create Account</button></div>
+      <div class="login-security"><i class="fa-solid fa-shield-halved"></i> Secure access to GREENPULSE</div>
+      <p class="demo-credentials"><strong>Farmer:</strong> farmer@greenpulse.rw / GreenPulse123!<br><strong>Admin:</strong> admin@greenpulse.rw / AdminGreen123!</p>
+    </div>
+  </div>
+</section>
+
+<!-- CREATE ACCOUNT SCREEN -->
+<section class="login-screen auth-screen" id="registerScreen" hidden>
+  <div class="login-container">
+    <div class="login-welcome"><a class="login-brand" href="#"><span class="login-logo"><i class="fa-solid fa-seedling"></i></span><span>GREENPULSE</span></a><div class="welcome-content"><span class="welcome-label">JOIN GREENPULSE</span><h2>Start Growing Smarter.</h2><p>Create your farmer account to monitor your farm and manage irrigation.</p></div><div class="login-footer"><i class="fa-solid fa-shield-halved"></i> Simple access for your farm</div></div>
+    <div class="login-form-side"><div class="login-form-header"><span class="login-small-title">NEW ACCOUNT</span><h2>Create Account</h2><p>Fill in your details to get started.</p></div>
+      <form id="registerForm">
+        <div class="login-input-group"><label for="registerName">Full name</label><div class="login-input-wrapper"><i class="fa-regular fa-user"></i><input id="registerName" type="text" placeholder="Your full name" autocomplete="name" required minlength="2"></div></div>
+        <div class="login-input-group"><label for="registerEmail">Email address</label><div class="login-input-wrapper"><i class="fa-regular fa-envelope"></i><input id="registerEmail" type="email" placeholder="name@example.com" autocomplete="email" required></div></div>
+        <div class="login-input-group"><label for="registerPhone">Phone number (for SMS, optional)</label><div class="login-input-wrapper"><i class="fa-solid fa-phone"></i><input id="registerPhone" type="tel" placeholder="+2507XXXXXXXX" autocomplete="tel"></div></div>
+        <div class="login-input-group"><label for="registerPassword">Password</label><div class="login-input-wrapper"><i class="fa-solid fa-lock"></i><input id="registerPassword" type="password" placeholder="At least 8 characters" autocomplete="new-password" required minlength="8"></div></div>
+        <div class="login-input-group"><label for="registerConfirm">Confirm password</label><div class="login-input-wrapper"><i class="fa-solid fa-lock"></i><input id="registerConfirm" type="password" placeholder="Repeat your password" autocomplete="new-password" required minlength="8"></div></div>
+        <p class="login-error" id="registerError" role="alert"></p><button type="submit" class="login-submit">Create Account <i class="fa-solid fa-arrow-right"></i></button>
+      </form><div class="login-register">Already have an account? <button type="button" id="backToLoginFromRegister">Sign In</button></div><p class="demo-credentials">New accounts are created as Farmer accounts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FORGOT PASSWORD SCREEN: local demo reset, no email sent -->
+<section class="login-screen auth-screen" id="forgotScreen" hidden>
+  <div class="login-container">
+    <div class="login-welcome"><a class="login-brand" href="#"><span class="login-logo"><i class="fa-solid fa-seedling"></i></span><span>GREENPULSE</span></a><div class="welcome-content"><span class="welcome-label">ACCOUNT RECOVERY</span><h2>Reset Your Password.</h2><p>Set a new password for an existing demo account.</p></div><div class="login-footer"><i class="fa-solid fa-lock"></i> Account recovery</div></div>
+    <div class="login-form-side"><div class="login-form-header"><span class="login-small-title">FORGOT PASSWORD</span><h2>Reset Password</h2><p>Enter your account email and choose a new password.</p></div>
+      <form id="resetForm"><div class="login-input-group"><label for="resetEmail">Email address</label><div class="login-input-wrapper"><i class="fa-regular fa-envelope"></i><input id="resetEmail" type="email" placeholder="Your registered email" required></div></div>
+      <div class="login-input-group"><label for="resetPassword">New password</label><div class="login-input-wrapper"><i class="fa-solid fa-lock"></i><input id="resetPassword" type="password" placeholder="At least 8 characters" required minlength="8"></div></div>
+      <div class="login-input-group"><label for="resetConfirm">Confirm new password</label><div class="login-input-wrapper"><i class="fa-solid fa-lock"></i><input id="resetConfirm" type="password" placeholder="Repeat new password" required minlength="8"></div></div>
+      <p class="login-error" id="resetError" role="alert"></p><button type="submit" class="login-submit">Save New Password <i class="fa-solid fa-check"></i></button></form>
+      <div class="login-register"><button type="button" id="backToLoginFromReset">Back to Sign In</button></div><p class="demo-credentials">Demo only: this does not send a recovery email.</p>
+    </div>
+  </div>
+</section>
+
+<div class="app-shell" id="dashboardApp" hidden>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#" aria-label="GREENPULSE home">
+      <span class="brand-mark"><i class="fa-solid fa-seedling"></i></span>
+      <span><strong>GREENPULSE</strong><small data-i18n="tagline">Ubuhinzi bw'ikoranabuhanga</small></span>
+    </a>
+    <div class="nav-label" data-i18n="menu">MENU</div>
+    <nav class="nav-list" aria-label="Main navigation">
+      <button class="nav-link active" data-page="overview"><i class="fa-solid fa-house"></i><span data-i18n="overview">Ahabanza</span></button>
+      <button class="nav-link" data-page="monitoring"><i class="fa-solid fa-chart-line"></i><span data-i18n="monitoring">Ibyapimwe</span></button>
+      <button class="nav-link" data-page="irrigation"><i class="fa-solid fa-droplet"></i><span data-i18n="irrigation">Kuhira</span></button>
+      <button class="nav-link" data-page="water"><i class="fa-solid fa-water"></i><span data-i18n="waterPage">Water Tracking</span></button>
+      <button class="nav-link" data-page="alerts"><i class="fa-solid fa-bell"></i><span data-i18n="alerts">Ubutumwa</span><span class="nav-count" id="alertCount">1</span></button>
+      <button class="nav-link" data-page="history"><i class="fa-solid fa-clock-rotate-left"></i><span data-i18n="history">Amateka</span></button>
+      <button class="nav-link" data-page="settings"><i class="fa-solid fa-gear"></i><span data-i18n="settings">Igenamiterere</span></button>
+      <button class="nav-link" data-page="phone"><i class="fa-solid fa-mobile-screen-button"></i><span>Phone & SMS</span></button>
+      <button class="nav-link admin-only" data-page="admin" hidden><i class="fa-solid fa-users-gear"></i><span>Admin Management</span></button>
+      <button class="nav-link" data-page="account"><i class="fa-solid fa-user-circle"></i><span>My Account</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="offline-note"><span class="status-dot"></span><span data-i18n="localNote">Igenzura ryo kuhira rikorerwa kuri device</span></div>
+      <div class="profile">
+        <div class="avatar" id="profileAvatar">GP</div>
+        <div class="profile-info"><strong id="profileName">Umuhinzi</strong><small id="profileRole">Farmer account</small></div>
+        <button class="logout-btn" id="logoutButton" type="button" title="Logout" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-area">
+    <header class="topbar">
+      <button class="icon-btn mobile-menu" id="menuToggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+      <div><p class="eyebrow" data-i18n="farmSystem">UBUHINZI BW'IKORANABUHANGA</p><h1 id="pageTitle" data-i18n="overview">Ahabanza</h1></div>
+      <div class="top-actions">
+        <span class="connection"><span class="status-dot"></span><span data-i18n="demoConnected">Demo irakora</span></span>
+        <label class="language-label" for="languageSelect"><i class="fa-solid fa-globe"></i></label>
+        <select id="languageSelect" aria-label="Choose language"><option value="rw">Kinyarwanda</option><option value="en">English</option></select>
+      </div>
+    </header>
+
+    <section class="page active" id="page-overview">
+      <div class="welcome-panel">
+        <div><span class="welcome-chip"><i class="fa-solid fa-leaf"></i> GREENPULSE</span><h2 data-i18n="welcomeTitle">Murakaza neza ku murima wawe</h2><p data-i18n="welcomeText">Kurikirana ubutaka n'ikirere, uhite umenya igihe cyo kuhira.</p></div>
+        <div class="welcome-art"><i class="fa-solid fa-seedling"></i><i class="fa-solid fa-sun"></i></div>
+      </div>
+      <div class="section-heading"><div><h2 data-i18n="todaySummary">Imiterere y'ubu</h2><p data-i18n="latestReadings">Ibipimo bya sensor (amakuru y'igerageza)</p></div><span class="demo-tag" data-i18n="demoData">DEMO DATA</span></div>
+      <div class="metrics-grid">
+        <article class="metric-card"><div class="metric-top"><span data-i18n="temperature">Ubushyuhe</span><span class="metric-icon orange"><i class="fa-solid fa-temperature-half"></i></span></div><div class="metric-value"><span id="temperatureValue">25.4</span><small>°C</small></div><p class="metric-foot" data-i18n="airTemperature">Ubushyuhe bw'umwuka</p></article>
+        <article class="metric-card"><div class="metric-top"><span data-i18n="airHumidity">Ububobere bw'umwuka</span><span class="metric-icon blue"><i class="fa-solid fa-cloud"></i></span></div><div class="metric-value"><span id="humidityValue">60</span><small>%</small></div><p class="metric-foot" data-i18n="relativeHumidity">Relative humidity</p></article>
+        <article class="metric-card"><div class="metric-top"><span data-i18n="soilMoisture">Ububobere bw'ubutaka</span><span class="metric-icon green"><i class="fa-solid fa-droplet"></i></span></div><div class="metric-value"><span id="moistureValue">42</span><small>%</small></div><p class="metric-foot" id="moistureStatus">Ubutaka bwumye</p></article>
+        <article class="metric-card"><div class="metric-top"><span data-i18n="pumpStatus">Imiterere ya pompe</span><span class="metric-icon purple"><i class="fa-solid fa-water"></i></span></div><div class="metric-value state-value" id="pumpStatusValue">OFF</div><p class="metric-foot" id="pumpStatusFoot">Pompe irazimye</p></article>
+      </div>
+      <div class="content-grid">
+        <article class="panel"><div class="panel-heading"><div><h3 data-i18n="soilLevel">Ububobere bw'ubutaka</h3><p data-i18n="soilLevelDesc">Igipimo cya nyuma cyabonetse</p></div><i class="fa-solid fa-chart-area panel-symbol"></i></div><div class="progress-wrap"><div class="progress-meta"><span data-i18n="currentMoisture">Ubu</span><strong id="moisturePercent">42%</strong></div><div class="progress-track"><div class="progress-fill" id="moistureBar" style="width:42%"></div></div><div class="scale-labels"><span data-i18n="dry">Humye</span><span data-i18n="good">Byiza</span><span data-i18n="wet">Byinshi</span></div></div><div class="insight"><i class="fa-solid fa-circle-info"></i><span id="moistureAdvice">Ubutaka burakenera amazi.</span></div></article>
+        <article class="panel pump-panel"><div class="panel-heading"><div><h3 data-i18n="quickIrrigation">Kuhira vuba</h3><p data-i18n="quickIrrigationDesc">Hitamo uburyo bwo kuhira</p></div><i class="fa-solid fa-faucet panel-symbol"></i></div><div class="mode-row"><span data-i18n="controlMode">Uburyo bwo kugenzura</span><strong id="modeLabel">AUTO</strong></div><div class="button-row"><button class="primary-btn" id="quickAuto"><i class="fa-solid fa-wand-magic-sparkles"></i><span data-i18n="automatic">Automatic</span></button><button class="secondary-btn" id="quickManual"><i class="fa-solid fa-hand"></i><span data-i18n="manual">Manual</span></button></div><button class="wide-btn" id="quickPump"><i class="fa-solid fa-power-off"></i><span data-i18n="turnPumpOn">Fungura pompe</span></button><p class="small-note" data-i18n="safetyNote">Mu buryo bwa AUTO, pompe ifunguka iyo ubutaka bwumye kurenza urugero washyizeho.</p></article>
+      </div>
+      <article class="panel water-usage-panel">
+        <div class="panel-heading"><div><h3 data-i18n="waterTracking">Gukurikirana amazi yo kuhira</h3><p data-i18n="waterTrackingDesc">Amazi yakoreshejwe n'ayasigaye muri tank</p></div><span class="water-live" id="irrigationLiveStatus">PUMP OFF</span></div>
+        <div class="water-stats-grid">
+          <div class="water-stat"><span data-i18n="waterUsed">Amazi yakoreshejwe</span><strong><span id="waterUsedValue">0.0</span> <small>L</small></strong></div>
+          <div class="water-stat"><span data-i18n="waterRemaining">Amazi asigaye</span><strong><span id="waterRemainingValue">100.0</span> <small>L</small></strong></div>
+          <div class="water-stat"><span data-i18n="tankCapacity">Ubushobozi bwa tank</span><strong><span id="waterCapacityValue">100</span> <small>L</small></strong></div>
+          <div class="water-stat"><span data-i18n="irrigationDuration">Igihe cyo kuhira</span><strong id="irrigationDurationValue">00:00</strong></div>
+        </div>
+        <div class="tank-progress-track"><div class="tank-progress-fill" id="tankLevelBar" style="width:100%"></div></div>
+        <div class="water-detail-row"><span><span data-i18n="irrigationStarted">Byatangiye</span>: <strong id="irrigationStartValue">--</strong></span><span><span data-i18n="flowRate">Umuvuduko</span>: <strong id="flowRateValue">5.0 L/min</strong></span></div>
+        <p class="small-note" data-i18n="waterEstimateNote">Iyi ni demo ibara amazi hakurikijwe umuvuduko wa pompe wagenwe. Kugira ngo ubone litiro nyazo, hazakenerwa flow sensor.</p>
+      </article>
+    </section>
+
+    <section class="page" id="page-monitoring">
+      <div class="section-heading"><div><h2 data-i18n="liveMonitoring">Gukurikirana ibipimo</h2><p data-i18n="monitoringDesc">Amakuru ava kuri sensors za greenhouse.</p></div><span class="demo-tag" data-i18n="demoData">DEMO DATA</span></div>
+      <div class="metrics-grid compact"><article class="metric-card"><div class="metric-top"><span data-i18n="temperature">Ubushyuhe</span><i class="fa-solid fa-temperature-half"></i></div><div class="metric-value"><span id="monitorTemp">25.4</span><small>°C</small></div></article><article class="metric-card"><div class="metric-top"><span data-i18n="airHumidity">Ububobere bw'umwuka</span><i class="fa-solid fa-cloud"></i></div><div class="metric-value"><span id="monitorHumidity">60</span><small>%</small></div></article><article class="metric-card"><div class="metric-top"><span data-i18n="soilMoisture">Ububobere bw'ubutaka</span><i class="fa-solid fa-droplet"></i></div><div class="metric-value"><span id="monitorMoisture">42</span><small>%</small></div></article></div>
+      <article class="panel"><div class="panel-heading"><div><h3 data-i18n="sensorInfo">Ibyerekeye sensors</h3><p data-i18n="sensorInfoDesc">Ibikoresho biteganyijwe muri prototype</p></div></div><ul class="sensor-list"><li><i class="fa-solid fa-temperature-half"></i><span><strong>DHT11</strong><small data-i18n="dhtDescription">Ipima ubushyuhe n'ububobere bw'umwuka</small></span><b data-i18n="planned">Iteguwe</b></li><li><i class="fa-solid fa-droplet"></i><span><strong>Capacitive soil sensor</strong><small data-i18n="soilDescription">Ipima ububobere bw'ubutaka</small></span><b data-i18n="planned">Iteguwe</b></li><li><i class="fa-solid fa-wifi"></i><span><strong>ESP8266 ESP-01</strong><small data-i18n="wifiDescription">Itanga Wi-Fi communication</small></span><b data-i18n="planned">Iteguwe</b></li></ul></article>
+    </section>
+
+    <section class="page" id="page-irrigation">
+      <div class="section-heading"><div><h2 data-i18n="irrigationControl">Genzura kuhira</h2><p data-i18n="irrigationDesc">Automatic cyangwa manual control ya pompe y'amazi.</p></div></div>
+      <div class="content-grid irrigation-grid">
+        <article class="panel"><div class="panel-heading"><div><h3 data-i18n="irrigationMode">Uburyo bwo kuhira</h3><p data-i18n="chooseMode">Hitamo uburyo bukwiye</p></div></div><div class="mode-options"><button class="mode-option selected" id="autoMode"><i class="fa-solid fa-robot"></i><span><strong data-i18n="automatic">Automatic</strong><small data-i18n="autoDesc">Sisitemu ifata icyemezo ikurikije ububobere.</small></span><i class="fa-solid fa-circle-check check"></i></button><button class="mode-option" id="manualMode"><i class="fa-solid fa-hand"></i><span><strong data-i18n="manual">Manual</strong><small data-i18n="manualDesc">Umuhinzi ni we ufungura cyangwa azimya pompe.</small></span><i class="fa-solid fa-circle-check check"></i></button></div></article>
+        <article class="panel"><div class="panel-heading"><div><h3 data-i18n="waterPump">Pompe y'amazi</h3><p data-i18n="pumpDesc">Igenzura rya pompe (demo)</p></div><span class="pump-indicator" id="pumpIndicator">OFF</span></div><div class="pump-visual"><i class="fa-solid fa-faucet-drip" id="pumpIcon"></i><div><strong id="pumpLarge">OFF</strong><small id="pumpCaption">Pompe irazimye</small></div></div><button class="wide-btn" id="pumpToggle"><i class="fa-solid fa-power-off"></i><span data-i18n="turnPumpOn">Fungura pompe</span></button><p class="small-note" data-i18n="manualOnlyNote">Iyi button ikora gusa muri Manual mode. AUTO igenzurwa n'igipimo cy'ubutaka.</p></article>
+      </div>
+      <article class="panel tank-settings-panel">
+        <div class="panel-heading"><div><h3 data-i18n="tankSettings">Igenamiterere rya tank y'amazi</h3><p data-i18n="tankSettingsDesc">Shyiraho ubushobozi bwa tank, wongere amazi igihe yuzuye.</p></div><i class="fa-solid fa-gauge-high panel-symbol"></i></div>
+        <div class="tank-controls"><label for="tankCapacityInput" data-i18n="tankCapacity">Ubushobozi bwa tank (L)</label><div class="tank-input-row"><input type="number" id="tankCapacityInput" min="1" max="100000" step="1" value="100" aria-label="Tank capacity in litres"><input type="number" id="flowRateInput" min="0.1" max="1000" step="0.1" value="5" aria-label="Pump flow rate in litres per minute"><button class="secondary-btn" id="saveTankCapacity" data-i18n="saveTankCapacity">Bika igenamiterere</button><button class="primary-btn" id="refillTank" data-i18n="refillTank">Ongera amazi (Fill)</button></div><p class="small-note"><span data-i18n="tankCapacity">Tank capacity</span> (L) • <span data-i18n="flowRate">Pump flow rate</span> (L/min)</p></div>
+        <p class="small-note" data-i18n="tankRefillNote">Kanda Fill nyuma yo kongera amazi muri tank. Ibi ni ibarura rya demo.</p>
+      </article>
+      <article class="panel threshold-panel"><div class="panel-heading"><div><h3 data-i18n="irrigationThreshold">Urugero rwo gutangiza kuhira</h3><p data-i18n="thresholdDesc">Pompe izafunguka iyo ububobere buri munsi y'uru rugero.</p></div></div><div class="threshold-value"><strong id="thresholdDisplay">30%</strong><input type="range" min="10" max="60" value="30" id="thresholdSlider"><div class="scale-labels"><span>10%</span><span>60%</span></div></div><button class="secondary-btn save-threshold" id="saveThreshold" data-i18n="saveThreshold">Bika urugero</button></article>
+    </section>
+
+    <section class="page" id="page-water">
+      <div class="section-heading"><div><h2 data-i18n="waterPage">Water Tracking</h2><p data-i18n="waterPageDesc">Amazi yakoreshejwe, asigaye n'amateka yo kuhira.</p></div><span class="demo-tag">WATER RECORDS</span></div>
+      <div class="metrics-grid water-history-metrics">
+        <article class="metric-card"><div class="metric-top"><span data-i18n="waterUsed">Amazi yakoreshejwe</span><i class="fa-solid fa-droplet"></i></div><div class="metric-value"><span id="waterPageUsed">0.0</span><small> L</small></div></article>
+        <article class="metric-card"><div class="metric-top"><span data-i18n="waterRemaining">Amazi asigaye</span><i class="fa-solid fa-water"></i></div><div class="metric-value"><span id="waterPageRemaining">100.0</span><small> L</small></div></article>
+        <article class="metric-card"><div class="metric-top"><span data-i18n="irrigationDuration">Igihe cyo kuhira</span><i class="fa-regular fa-clock"></i></div><div class="metric-value" id="waterPageDuration">00:00</div></article>
+      </div>
+      <article class="panel table-panel"><div class="panel-heading"><div><h3 data-i18n="waterHistoryTitle">Irrigation Water History</h3><p data-i18n="waterHistoryDesc">Buri gihe pompe ifunguye n'amazi yakoreshejwe.</p></div></div><div class="table-scroll"><table><thead><tr><th data-i18n="time">Igihe</th><th data-i18n="irrigationDuration">Duration</th><th data-i18n="waterUsed">Water used</th><th data-i18n="waterRemaining">Water remaining</th><th data-i18n="event">Mode</th></tr></thead><tbody id="waterHistoryRows"></tbody></table></div></article>
+      <p class="small-note" data-i18n="waterEstimateNote">Iyi ni demo ibara amazi hakurikijwe umuvuduko wa pompe wagenwe. Kugira ngo ubone litiro nyazo, hazakenerwa flow sensor.</p>
+    </section>
+
+    <section class="page" id="page-alerts">
+      <div class="section-heading"><div><h2 data-i18n="alertsTitle">Ubutumwa n'imbuzi</h2><p data-i18n="alertsDesc">Ubutumwa bugufasha gufata ibyemezo ku murima.</p></div><button class="secondary-btn" id="testVoice"><i class="fa-solid fa-volume-high"></i><span data-i18n="testVoice">Gerageza ijwi</span></button></div>
+      <div id="alertList" class="alert-list"></div>
+      <article class="panel voice-panel"><div class="voice-icon"><i class="fa-solid fa-ear-listen"></i></div><div><h3 data-i18n="voiceTitle">Ubutumwa bw'ijwi mu Kinyarwanda</h3><p data-i18n="voiceDesc">GREENPULSE igerageza gusoma ubutumwa mu Kinyarwanda ikoresheje ijwi rya browser yawe.</p></div></article>
+    </section>
+
+    <section class="page" id="page-history">
+      <div class="section-heading"><div><h2 data-i18n="historyTitle">Amateka y'ibipimo</h2><p data-i18n="historyDesc">Ibikorwa byabaye muri iyi demo session.</p></div><button class="secondary-btn" id="clearHistory" data-i18n="clearHistory">Siba amateka</button></div>
+      <div class="panel table-panel"><div class="table-scroll"><table><thead><tr><th data-i18n="time">Igihe</th><th data-i18n="event">Igikorwa</th><th data-i18n="details">Ibisobanuro</th></tr></thead><tbody id="historyRows"></tbody></table></div></div>
+    </section>
+
+    <section class="page" id="page-settings">
+      <div class="section-heading"><div><h2 data-i18n="settingsTitle">Igenamiterere</h2><p data-i18n="settingsDesc">Hindura uko GREENPULSE ikora.</p></div></div>
+      <article class="panel settings-panel"><div class="setting-row"><div><strong data-i18n="language">Ururimi</strong><small data-i18n="languageDesc">Hitamo ururimi ukoresha.</small></div><select id="settingsLanguage"><option value="rw">Kinyarwanda</option><option value="en">English</option></select></div><div class="setting-row"><div><strong data-i18n="voiceAlerts">Imbuzi z'ijwi</strong><small data-i18n="voiceAlertsDesc">Soma ubutumwa mu ijwi igihe hari ikibazo.</small></div><label class="switch"><input type="checkbox" id="voiceEnabled" checked><span class="slider"></span></label></div><div class="setting-row"><div><strong data-i18n="autoIrrigation">Automatic irrigation</strong><small data-i18n="autoIrrigationDesc">Emerera sisitemu kugenzura pompe hakurikijwe ubutaka.</small></div><label class="switch"><input type="checkbox" id="autoEnabled" checked><span class="slider"></span></label></div><div class="setting-row"><div><strong data-i18n="simulation">Demo simulation</strong><small data-i18n="simulationDesc">Hindura ibipimo by'igerageza kugira ngo ugerageze dashboard.</small></div><div class="button-row"><button class="secondary-btn" id="simulateDry" data-i18n="simulateDry">Gerageza ubutaka bwumye</button><button class="secondary-btn" id="simulateWet" data-i18n="simulateWet">Gerageza ubutaka bufite amazi ahagije</button></div></div><p class="small-note" data-i18n="settingsNote">Igenamiterere ribikwa muri browser yawe. Nta sensor cyangwa pompe bifatika bihujwe muri iyi version.</p></article>
+    </section>
+    <section class="page" id="page-phone">
+      <div class="section-heading"><div><h2 data-i18n="phoneSmsTitle">Phone & SMS Service</h2><p data-i18n="phoneSmsDesc">Register your phone and choose the alerts you want to receive.</p></div><span class="demo-tag">SMS DEMO</span></div>
+      <article class="panel settings-panel">
+        <div class="panel-heading"><div><h3 data-i18n="phoneRegistration">Farmer phone registration</h3><p data-i18n="basicPhoneNote">A basic mobile phone can receive ordinary SMS messages; a smartphone is not required.</p></div><i class="fa-solid fa-mobile-screen-button panel-symbol"></i></div>
+        <form id="phoneSettingsForm" class="account-password-form">
+          <div class="login-input-group"><label for="farmerPhone" data-i18n="mobileNumber">Mobile phone number</label><div class="login-input-wrapper"><i class="fa-solid fa-phone"></i><input id="farmerPhone" type="tel" placeholder="+2507XXXXXXXX" required></div></div>
+          <div class="login-input-group"><label for="smsLanguage" data-i18n="smsLanguageLabel">SMS language</label><select id="smsLanguage" class="sms-select"><option value="rw">Kinyarwanda</option><option value="en">English</option></select></div>
+          <label class="sms-consent"><input type="checkbox" id="smsOptIn"> <span data-i18n="smsConsentText">I agree to receive GREENPULSE SMS alerts about irrigation and farm conditions.</span></label>
+          <button class="primary-btn" type="submit" data-i18n="savePhoneSettings">Save phone settings</button>
+          <p class="small-note">You can turn SMS alerts off at any time. This prototype records your preference locally; it does not send a real SMS yet.</p>
+        </form>
+      </article>
+      <article class="panel sms-preview-panel"><div class="panel-heading"><div><h3>Example SMS message</h3><p>How an alert will appear on a basic mobile phone.</p></div><i class="fa-regular fa-message panel-symbol"></i></div><div class="sms-preview">GREENPULSE: Ubutaka bwumye. Igihe cyo kuhira kirageze. Reba amazi asigaye muri tank.</div></article>
+    </section>
+
+    <section class="page" id="page-admin">
+      <div class="section-heading"><div><h2>Admin Dashboard</h2><p>Manage registered GREENPULSE accounts and access roles.</p></div><span class="demo-tag">ADMIN AREA</span></div>
+      <div class="metrics-grid admin-metrics"><article class="metric-card"><div class="metric-top"><span>Total users</span><i class="fa-solid fa-users"></i></div><div class="metric-value" id="adminTotalUsers">0</div><p class="metric-foot">Registered accounts</p></article><article class="metric-card"><div class="metric-top"><span>Farmers</span><i class="fa-solid fa-seedling"></i></div><div class="metric-value" id="adminFarmerCount">0</div><p class="metric-foot">Farmer accounts</p></article><article class="metric-card"><div class="metric-top"><span>Administrators</span><i class="fa-solid fa-user-shield"></i></div><div class="metric-value" id="adminCount">0</div><p class="metric-foot">Admin accounts</p></article></div>
+      <div class="section-heading"><div><h2>User Management</h2><p>Change user roles or remove demo accounts.</p></div></div>
+      <div class="panel table-panel"><div class="table-scroll"><table><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>SMS Consent</th><th>Role</th><th>Joined</th><th>Actions</th></tr></thead><tbody id="adminUsersRows"></tbody></table></div></div>
+      <div class="section-heading"><div><h2>SMS Management</h2><p>Test the SMS workflow and review demo messages.</p></div></div>
+      <article class="panel sms-admin-panel">
+        <form id="adminSmsForm" class="sms-compose"><div class="login-input-group"><label for="adminSmsPhone">Recipient phone number</label><div class="login-input-wrapper"><i class="fa-solid fa-phone"></i><input id="adminSmsPhone" type="tel" placeholder="+2507XXXXXXXX" required></div></div><div class="login-input-group"><label for="adminSmsMessage">Message</label><textarea id="adminSmsMessage" rows="3" maxlength="320" required placeholder="Write a short farm alert..."></textarea></div><div class="button-row"><button class="primary-btn" type="submit"><i class="fa-solid fa-paper-plane"></i> Simulate SMS send</button><button class="secondary-btn" type="button" id="sendSmsToFarmers">Send to opted-in farmers</button></div></form>
+        <p class="small-note">Demo only: this records a simulated SMS. Real delivery requires a configured SMS Gateway provider and backend API credentials.</p>
+      </article>
+      <div class="panel table-panel"><div class="table-scroll"><table><thead><tr><th>Time</th><th>Recipient</th><th>Phone</th><th>Message</th><th>Status</th></tr></thead><tbody id="smsLogRows"></tbody></table></div></div>
+      <p class="small-note">For safety, public registration always creates a Farmer account. Only an administrator can promote an account to Admin.</p>
+    </section>
+
+    <section class="page" id="page-account">
+      <div class="section-heading"><div><h2>My Account</h2><p>View your profile and update your demo password.</p></div></div>
+      <article class="panel settings-panel"><div class="setting-row"><div><strong>Full name</strong><small id="accountName">—</small></div></div><div class="setting-row"><div><strong>Email address</strong><small id="accountEmail">—</small></div></div><div class="setting-row"><div><strong>Account role</strong><small id="accountRole">—</small></div></div><div class="setting-row"><div><strong>Phone number</strong><small id="accountPhone">Not added</small></div></div>
+      <form id="changePasswordForm" class="account-password-form"><h3>Change Password</h3><div class="login-input-group"><label for="currentPassword">Current password</label><div class="login-input-wrapper"><i class="fa-solid fa-lock"></i><input id="currentPassword" type="password" required></div></div><div class="login-input-group"><label for="newPassword">New password</label><div class="login-input-wrapper"><i class="fa-solid fa-lock"></i><input id="newPassword" type="password" minlength="8" required></div></div><div class="login-input-group"><label for="confirmNewPassword">Confirm new password</label><div class="login-input-wrapper"><i class="fa-solid fa-lock"></i><input id="confirmNewPassword" type="password" minlength="8" required></div></div><p class="login-error" id="changePasswordError" role="alert"></p><button class="primary-btn" type="submit">Update Password</button></form></article>
+    </section>
+
+    <footer><span>© 2026 GREENPULSE</span><span data-i18n="footerNote">Smart farming • Local-first irrigation</span></footer>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("./sw.js")
+        .then(() => console.log("GREENPULSE is ready offline"))
+        .catch((error) => console.error("Service Worker error:", error));
+    });
+  }
+</script>
+</body>
+</html>
